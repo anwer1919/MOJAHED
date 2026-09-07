@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة عقد قرآن - مجاهد يوسف</title>
+    <title>دعوة عقد قرآن</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #f5f1e8 0%, #ede6d9 50%, #e6dcc8 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -35,18 +35,19 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, #ffd700, transparent);
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #d4af37, transparent);
             border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
+            animation: float 8s infinite ease-in-out;
             opacity: 0;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             100% { transform: translateY(-100vh) scale(1); opacity: 0; }
         }
 
@@ -57,8 +58,8 @@
         }
 
         .envelope-wrapper {
-            width: 500px;
-            height: 700px;
+            width: 520px;
+            height: 720px;
             position: relative;
             transform-style: preserve-3d;
             cursor: pointer;
@@ -66,7 +67,7 @@
         }
 
         .envelope-wrapper:hover {
-            transform: rotateY(5deg) rotateX(5deg);
+            transform: rotateY(3deg) rotateX(3deg) scale(1.02);
         }
 
         .envelope {
@@ -74,57 +75,67 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .envelope.open {
             transform: rotateY(180deg);
         }
 
+        /* خلفية الظرف */
         .envelope-back {
             position: absolute;
             width: 100%;
             height: 100%;
             background: linear-gradient(145deg, #f8f5f0 0%, #f0ebe0 100%);
             backface-visibility: hidden;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 0 100px rgba(255, 215, 0, 0.1);
+                0 25px 70px rgba(0, 0, 0, 0.3),
+                inset 0 0 150px rgba(212, 175, 55, 0.15);
             overflow: hidden;
         }
 
-        .envelope-back::before {
-            content: '';
+        /* الزخارف الذهبية */
+        .floral-corner {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+            width: 180px;
+            height: 180px;
+            opacity: 0.6;
         }
 
-        .floral-pattern {
-            position: absolute;
+        .floral-corner.top-left {
+            top: -20px;
+            left: -20px;
+            transform: rotate(0deg);
+        }
+
+        .floral-corner.top-right {
+            top: -20px;
+            right: -20px;
+            transform: rotate(90deg);
+        }
+
+        .floral-corner.bottom-left {
+            bottom: -20px;
+            left: -20px;
+            transform: rotate(-90deg);
+        }
+
+        .floral-corner.bottom-right {
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(180deg);
+        }
+
+        .floral-svg {
             width: 100%;
             height: 100%;
-            opacity: 0.3;
-            background-image: 
-                radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.4) 2px, transparent 2px),
-                radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.4) 2px, transparent 2px),
-                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.3) 1px, transparent 1px);
-            background-size: 100px 100px, 150px 150px, 80px 80px;
-            animation: shimmer 8s infinite linear;
+            fill: #d4af37;
+            filter: drop-shadow(2px 2px 4px rgba(212, 175, 55, 0.3));
         }
 
-        @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* واجهة الظرف مع الباب */
         .envelope-front {
             position: absolute;
             width: 100%;
@@ -132,33 +143,35 @@
             background: linear-gradient(145deg, #f8f5f0 0%, #f0ebe0 100%);
             backface-visibility: hidden;
             transform: rotateY(180deg);
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 0 100px rgba(255, 215, 0, 0.1);
+                0 25px 70px rgba(0, 0, 0, 0.3),
+                inset 0 0 150px rgba(212, 175, 55, 0.15);
             overflow: hidden;
         }
 
+        /* إطار الباب */
         .door-frame {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            height: 400px;
+            width: 300px;
+            height: 420px;
             perspective: 1000px;
         }
 
+        /* الباب */
         .door {
             position: absolute;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
-            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .envelope.open .door {
-            transform: rotateY(-110deg);
+            transform: rotateY(-105deg);
         }
 
         .door-left, .door-right {
@@ -166,267 +179,355 @@
             width: 50%;
             height: 100%;
             background: linear-gradient(145deg, #fffefc 0%, #faf8f5 100%);
-            border: 3px solid #d4af37;
+            border: 4px solid #d4af37;
             box-shadow: 
-                inset 0 0 30px rgba(212, 175, 55, 0.3),
-                0 5px 15px rgba(0, 0, 0, 0.2);
+                inset 0 0 40px rgba(212, 175, 55, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
 
         .door-left {
             left: 0;
-            border-radius: 140px 0 0 0;
+            border-radius: 150px 0 0 0;
             transform-origin: left;
             z-index: 2;
         }
 
         .door-right {
             right: 0;
-            border-radius: 0 140px 0 0;
+            border-radius: 0 150px 0 0;
             transform-origin: right;
             z-index: 2;
         }
 
+        /* زخرفة الباب */
         .door-pattern {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.1) 0px, rgba(212, 175, 55, 0.1) 2px, transparent 2px, transparent 20px),
-                repeating-linear-gradient(-45deg, rgba(212, 175, 55, 0.1) 0px, rgba(212, 175, 55, 0.1) 2px, transparent 2px, transparent 20px);
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
+        .door-pattern svg {
+            width: 100%;
+            height: 100%;
+            fill: #d4af37;
+        }
+
+        /* مقبض الباب */
         .door-handle {
             position: absolute;
             top: 50%;
-            width: 20px;
-            height: 40px;
+            width: 25px;
+            height: 45px;
             background: linear-gradient(180deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 
+                0 3px 12px rgba(0, 0, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
         }
 
         .door-left .door-handle {
-            right: 15px;
+            right: 18px;
         }
 
         .door-right .door-handle {
-            left: 15px;
+            left: 18px;
         }
 
+        /* الإضاءة الداخلية */
         .inner-glow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 260px;
-            height: 380px;
-            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.8) 0%, rgba(255, 200, 0, 0.4) 40%, transparent 70%);
+            width: 280px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 215, 0, 0.9) 0%, 
+                rgba(255, 200, 0, 0.5) 35%, 
+                rgba(255, 180, 0, 0.2) 60%, 
+                transparent 80%);
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 1.8s ease;
             z-index: 1;
+            filter: blur(20px);
         }
 
         .envelope.open .inner-glow {
             opacity: 1;
-            animation: glowPulse 3s infinite ease-in-out;
+            animation: glowPulse 4s infinite ease-in-out;
         }
 
         @keyframes glowPulse {
-            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+            0%, 100% { 
+                opacity: 0.85; 
+                transform: translate(-50%, -50%) scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1.08); 
+            }
         }
 
+        /* بطاقة الدعوة */
         .invitation-card {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 240px;
-            min-height: 340px;
+            transform: translate(-50%, -50%) scale(0.75) translateY(30px);
+            width: 260px;
+            min-height: 380px;
             background: linear-gradient(145deg, #fffefc 0%, #faf8f5 100%);
-            border: 2px solid #d4af37;
-            border-radius: 10px;
-            padding: 30px 20px;
+            border: 3px solid #d4af37;
+            border-radius: 8px;
+            padding: 35px 25px;
             text-align: center;
             opacity: 0;
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 3;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+            box-shadow: 
+                0 15px 50px rgba(212, 175, 55, 0.4),
+                inset 0 0 80px rgba(212, 175, 55, 0.1);
         }
 
         .envelope.open .invitation-card {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-            animation: cardEntrance 1s ease 0.5s both;
+            transform: translate(-50%, -50%) scale(1) translateY(0);
+            animation: cardEntrance 1.2s ease 0.8s both;
         }
 
         @keyframes cardEntrance {
-            0% { transform: translate(-50%, 50px) scale(0.8); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            0% { 
+                transform: translate(-50%, 60px) scale(0.75); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 1; 
+            }
         }
 
+        /* إطار البطاقة الداخلي */
         .card-border {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid #d4af37;
-            border-radius: 5px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 2px solid #d4af37;
+            border-radius: 4px;
             pointer-events: none;
+        }
+
+        /* زوايا البطاقة المزخرفة */
+        .card-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.7;
+        }
+
+        .card-corner.top-left { top: 8px; left: 8px; }
+        .card-corner.top-right { top: 8px; right: 8px; transform: rotate(90deg); }
+        .card-corner.bottom-left { bottom: 8px; left: 8px; transform: rotate(-90deg); }
+        .card-corner.bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
+
+        .card-corner svg {
+            width: 100%;
+            height: 100%;
+            fill: #d4af37;
+        }
+
+        /* محتوى البطاقة */
+        .card-content {
+            position: relative;
+            z-index: 2;
         }
 
         .card-content h1 {
             font-family: 'Amiri', serif;
-            font-size: 2.5em;
-            color: #d4af37;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
-            line-height: 1.4;
+            font-size: 2.8em;
+            color: #8b4513;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 6px rgba(139, 69, 19, 0.2);
+            line-height: 1.5;
+            font-weight: 700;
         }
 
-        .card-content p {
+        .card-content .verse {
             font-family: 'Amiri', serif;
-            font-size: 1.1em;
-            color: #333;
-            margin: 15px 0;
-            line-height: 1.8;
+            font-size: 1.15em;
+            color: #5a4a42;
+            margin: 12px 0;
+            line-height: 2;
+            font-style: italic;
         }
 
         .card-content .names {
-            font-size: 1.3em;
-            color: #d4af37;
+            font-family: 'Amiri', serif;
+            font-size: 1.4em;
+            color: #8b4513;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 25px 0;
+            line-height: 1.8;
         }
 
         .card-content .date-location {
-            font-size: 1em;
-            color: #555;
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 5px;
+            font-family: 'Amiri', serif;
+            font-size: 1.1em;
+            color: #5a4a42;
+            margin: 18px 0;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            line-height: 1.9;
         }
 
+        .card-content .blessing {
+            font-family: 'Amiri', serif;
+            font-size: 1.05em;
+            color: #5a4a42;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* تعليمات الفتح */
         .instruction {
             position: absolute;
-            bottom: -60px;
+            bottom: -70px;
             left: 50%;
             transform: translateX(-50%);
-            color: #ffd700;
-            font-size: 1.1em;
+            color: #8b4513;
+            font-size: 1.15em;
             text-align: center;
-            animation: bounce 2s infinite;
+            animation: bounce 2.5s infinite;
             white-space: nowrap;
+            font-weight: 600;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
+            50% { transform: translateX(-50%) translateY(-12px); }
         }
 
+        /* زر الموسيقى */
         .music-control {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 25px;
+            left: 25px;
             z-index: 100;
-            background: rgba(212, 175, 55, 0.9);
-            border: 2px solid #ffd700;
+            background: linear-gradient(145deg, #d4af37 0%, #ffd700 100%);
+            border: 3px solid #fff;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
         }
 
         .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+            transform: scale(1.12);
+            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
         }
 
         .music-control.playing {
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 5px 30px rgba(212, 175, 55, 0.8); }
+            0%, 100% { 
+                box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5); 
+            }
+            50% { 
+                box-shadow: 0 6px 40px rgba(212, 175, 55, 0.9); 
+            }
         }
 
         .music-icon {
             color: #fff;
-            font-size: 24px;
+            font-size: 26px;
         }
 
+        /* زر المشاركة */
         .share-button {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            left: 25px;
             z-index: 100;
             background: linear-gradient(145deg, #d4af37 0%, #ffd700 100%);
-            color: #1a1a2e;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 1em;
+            color: #fff;
+            border: 3px solid #fff;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1.05em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
         }
 
         .share-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
         }
 
+        /* تجاوب مع الشاشات الصغيرة */
         @media (max-width: 600px) {
             .envelope-wrapper {
-                width: 350px;
-                height: 500px;
+                width: 360px;
+                height: 520px;
             }
             
             .door-frame {
-                width: 200px;
-                height: 300px;
+                width: 220px;
+                height: 320px;
             }
             
             .invitation-card {
-                width: 180px;
-                min-height: 260px;
-                padding: 20px 15px;
+                width: 200px;
+                min-height: 300px;
+                padding: 25px 18px;
             }
             
             .card-content h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             
+            .card-content .verse,
             .card-content p {
-                font-size: 0.9em;
+                font-size: 0.95em;
+            }
+            
+            .floral-corner {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- الجزيئات العائمة -->
     <div class="particles" id="particles"></div>
     
+    <!-- زر المشاركة -->
     <button class="share-button" onclick="shareInvitation()">
          مشاركة الدعوة
     </button>
     
+    <!-- زر الموسيقى -->
     <div class="music-control" id="musicControl" onclick="toggleMusic()">
         <span class="music-icon">🎵</span>
     </div>
     
+    <!-- مشغل الموسيقى -->
     <audio id="backgroundMusic" loop>
         <source src="your-music-file.mp3" type="audio/mpeg">
     </audio>
@@ -434,73 +535,152 @@
     <div class="container">
         <div class="envelope-wrapper" onclick="openEnvelope()">
             <div class="envelope" id="envelope">
-                <!-- Back of envelope -->
+                <!-- ظهر الظرف -->
                 <div class="envelope-back">
-                    <div class="floral-pattern"></div>
+                    <div class="floral-corner top-left">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner top-right">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner bottom-left">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner bottom-right">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
                 </div>
                 
-                <!-- Front of envelope with door -->
+                <!-- واجهة الظرف مع الباب -->
                 <div class="envelope-front">
-                    <div class="floral-pattern"></div>
+                    <div class="floral-corner top-left">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner top-right">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner bottom-left">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <div class="floral-corner bottom-right">
+                        <svg class="floral-svg" viewBox="0 0 100 100">
+                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
+                        </svg>
+                    </div>
                     
                     <div class="door-frame">
                         <div class="inner-glow"></div>
                         
                         <div class="door">
                             <div class="door-left">
-                                <div class="door-pattern"></div>
+                                <div class="door-pattern">
+                                    <svg viewBox="0 0 100 200">
+                                        <path d="M50 10 Q30 40 20 70 Q30 100 50 130 Q70 100 80 70 Q70 40 50 10 Z M50 30 Q40 50 35 70 Q40 90 50 110 Q60 90 65 70 Q60 50 50 30 Z"/>
+                                    </svg>
+                                </div>
                                 <div class="door-handle"></div>
                             </div>
                             <div class="door-right">
-                                <div class="door-pattern"></div>
+                                <div class="door-pattern">
+                                    <svg viewBox="0 0 100 200">
+                                        <path d="M50 10 Q30 40 20 70 Q30 100 50 130 Q70 100 80 70 Q70 40 50 10 Z M50 30 Q40 50 35 70 Q40 90 50 110 Q60 90 65 70 Q60 50 50 30 Z"/>
+                                    </svg>
+                                </div>
                                 <div class="door-handle"></div>
                             </div>
                         </div>
                         
                         <div class="invitation-card">
                             <div class="card-border"></div>
+                            
+                            <div class="card-corner top-left">
+                                <svg viewBox="0 0 50 50">
+                                    <path d="M0 0 L20 0 Q10 10 0 20 Z"/>
+                                </svg>
+                            </div>
+                            <div class="card-corner top-right">
+                                <svg viewBox="0 0 50 50">
+                                    <path d="M50 0 L30 0 Q40 10 50 20 Z"/>
+                                </svg>
+                            </div>
+                            <div class="card-corner bottom-left">
+                                <svg viewBox="0 0 50 50">
+                                    <path d="M0 50 L20 50 Q10 40 0 30 Z"/>
+                                </svg>
+                            </div>
+                            <div class="card-corner bottom-right">
+                                <svg viewBox="0 0 50 50">
+                                    <path d="M50 50 L30 50 Q40 40 50 30 Z"/>
+                                </svg>
+                            </div>
+                            
                             <div class="card-content">
                                 <h1>دعوة عقد قرآن</h1>
-                                <p>وجعلنا بينكم مودة ورحمة</p>
-                                <p>الحمد لله الذي يسكن قلوب العباد وينعمها بنور الصالحات</p>
-                                <p class="names">يدعوكم السيد / يوسف عم عطية<br>لحضور عقد قرآن إبنه<br>مجاهد يوسف</p>
+                                
+                                <p class="verse">وجعلنا بينكم مودة ورحمة</p>
+                                
+                                <p class="verse">الحمد لله الذي يسكن قلوب العباد وينعمها بنور الصالحات</p>
+                                
+                                <p class="verse">بكل معاني الحب والود</p>
+                                
+                                <p class="names">
+                                    يدعوكم السيد / يوسف عم عطية<br>
+                                    لحضور عقد قرآن إبنه<br>
+                                    مجاهد يوسف
+                                </p>
+                                
                                 <div class="date-location">
-                                    <p>وذلك يوم الجمعة، 18 سبتمبر</p>
-                                    <p>في مسجد الشهيد</p>
-                                    <p>الخرطوم عقب صلاة الجمعة</p>
+                                    وذلك يوم الجمعة، 18 سبتمبر<br>
+                                    في مسجد الشهيد<br>
+                                    الخرطوم عقب صلاة الجمعة
                                 </div>
-                                <p>بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
+                                
+                                <p class="blessing">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="instruction">اضغط على الظرف لفتح الدعوة ✨</div>
+            <div class="instruction">✨ اضغط على الظرف لفتح الدعوة ✨</div>
         </div>
     </div>
 
     <script>
-        // Create floating particles
+        // إنشاء الجزيئات العائمة
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 5) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // Open envelope
+        // فتح الظرف
         function openEnvelope() {
             const envelope = document.getElementById('envelope');
             if (!envelope.classList.contains('open')) {
                 envelope.classList.add('open');
                 
-                // Play music automatically when opened (if not already playing)
+                // تشغيل الموسيقى تلقائياً عند الفتح
                 const music = document.getElementById('backgroundMusic');
                 const musicControl = document.getElementById('musicControl');
                 
@@ -514,7 +694,7 @@
             }
         }
 
-        // Toggle music
+        // التحكم في الموسيقى
         function toggleMusic() {
             const music = document.getElementById('backgroundMusic');
             const musicControl = document.getElementById('musicControl');
@@ -528,10 +708,10 @@
             }
         }
 
-        // Share invitation
+        // مشاركة الدعوة
         function shareInvitation() {
             const shareData = {
-                title: 'دعوة عقد قرآن - مجاهد يوسف',
+                title: 'دعوة عقد قرآن',
                 text: 'تشريفكم يسعدنا في حفل عقد القران',
                 url: window.location.href
             };
@@ -539,22 +719,21 @@
             if (navigator.share) {
                 navigator.share(shareData).catch(console.error);
             } else {
-                // Fallback for browsers that don't support Web Share API
                 const tempInput = document.createElement('input');
                 tempInput.value = window.location.href;
                 document.body.appendChild(tempInput);
                 tempInput.select();
                 document.execCommand('copy');
                 document.body.removeChild(tempInput);
-                alert('تم نسخ رابط الدعوة! يمكنك مشاركته الآن.');
+                alert('✅ تم نسخ رابط الدعوة! يمكنك مشاركته الآن.');
             }
         }
 
-        // Initialize
+        // التهيئة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             
-            // Add keyboard shortcut
+            // اختصار لوحة المفاتيح
             document.addEventListener('keydown', function(e) {
                 if (e.code === 'Space' || e.code === 'Enter') {
                     openEnvelope();
@@ -562,7 +741,7 @@
             });
         });
 
-        // Add smooth scroll and prevent default behaviors
+        // منع التمرير الافتراضي على الأجهزة المحمولة
         document.addEventListener('touchmove', function(e) {
             e.preventDefault();
         }, { passive: false });
