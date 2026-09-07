@@ -2,364 +2,342 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#d8cab4">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>دعوة عقد قرآن — مجاهد يوسف</title>
-
-<!-- Typography -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#d4c5a8">
+<title>دعوة عقد قرآن - مجاهد يوسف</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ==========================================================
-   DESIGN SYSTEM & RESET
-   ========================================================== */
-:root{
-  --paper:#d8cab4;
-  --ink:#453c31;
-  --ink-soft:#5a4f42;
-  --gold:#a8894e;
-  --shadow-card:0 24px 50px -12px rgba(74,60,38,.34), 0 6px 16px rgba(74,60,38,.16);
-  --ease-paper:cubic-bezier(.23,.62,.24,1);
-  --fly-dur:1200ms;
+/* ================= RESET & VARIABLES ================= */
+:root {
+  --bg-paper: #e6dcc8;
+  --card-bg: #fdfbf7;
+  --gold: #bfa36f;
+  --gold-dark: #8f7646;
+  --text-main: #4a3b2a;
+  --shadow-soft: 0 10px 30px rgba(60, 45, 30, 0.25);
+  --anim-speed: 1.2s;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  background-color: var(--bg-paper);
+  background-image: radial-gradient(#efe6d4 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: 'Amiri', serif;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-main);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent; outline:none;}
-html,body{height:100%; width:100%; overflow:hidden; font-family:'Amiri',serif; color:var(--ink); background:var(--paper);}
-
-/* Background Texture */
-body::before{
-  content:""; position:absolute; inset:0; pointer-events:none; z-index:-1;
-  background-image: radial-gradient(circle at 50% 0%, #e6dcc8 0%, var(--paper) 60%, #c9b899 100%);
+/* ================= STAGE (The Envelope) ================= */
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 420px; /* Mobile width limit */
+  height: 100%;
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Paper Grain Overlay */
-.grain{
-  position:absolute; inset:0; pointer-events:none; opacity:.4; mix-blend-mode:multiply; z-index:0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.06'/></svg>");
+/* The Card Inside */
+.invitation-card {
+  position: absolute;
+  width: 92%;
+  height: 94%; /* Full mobile screen height */
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vh 6vw;
+  text-align: center;
+  transition: transform var(--anim-speed) cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+  overflow: hidden;
+  border: 1px solid rgba(191, 163, 111, 0.3);
+  
+  /* Internal Pattern */
+  background-image: 
+    linear-gradient(rgba(191, 163, 111, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191, 163, 111, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* ==========================================================
-   STAGE & CARDS
-   ========================================================== */
-.stage{
-  position:relative; width:100%; height:100svh; overflow:hidden; perspective:1400px;
+/* Content Layout - No Scroll Needed */
+.card-header { margin-top: 2vh; }
+.card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.5vh; width: 100%; }
+.card-footer { margin-bottom: 2vh; width: 100%; }
+
+h1 { font-family: 'Aref Ruqaa', serif; font-size: 2.4rem; color: var(--gold-dark); margin-bottom: 1vh; line-height: 1.4; }
+.verse { font-size: 1.1rem; color: #6b5d4a; line-height: 1.8; font-style: italic; }
+.host { font-size: 1.2rem; font-weight: bold; margin-top: 1vh; }
+.groom-name { font-family: 'Aref Ruqaa', serif; font-size: 2.2rem; color: var(--text-main); margin: 1vh 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 10px 0; display: inline-block; min-width: 60%; }
+.details { font-size: 1.05rem; line-height: 1.6; }
+.blessing { font-size: 0.95rem; color: #8a7b66; margin-top: auto; }
+
+/* Buttons */
+.actions { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+  border: 1px solid var(--gold);
+}
+.btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; box-shadow: 0 4px 10px rgba(143, 118, 70, 0.3); }
+.btn-outline { background: transparent; color: var(--gold-dark); }
+.btn:active { transform: scale(0.98); }
+
+/* Decorative Corners (SVG) */
+.decor { position: absolute; width: 120px; height: 120px; opacity: 0.8; pointer-events: none; }
+.d-tl { top: -20px; left: -20px; transform: rotate(0deg); }
+.d-tr { top: -20px; right: -20px; transform: rotate(90deg); }
+.d-bl { bottom: -20px; left: -20px; transform: rotate(-90deg); }
+.d-br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+/* ================= THE ENVELOPE (Cover) ================= */
+.envelope-wrapper {
+  position: absolute;
+  width: 94%;
+  height: 96%;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform var(--anim-speed) ease-in-out, opacity 0.8s;
 }
 
-.stack{ position:absolute; inset:0; }
-.card{
-  position:absolute; top:50%; left:50%;
-  width:min(88vw, 420px); height:min(82svh, 760px); /* Height adjusted to fit content without scroll */
-  background: linear-gradient(160deg, #e0d3bd 0%, var(--paper) 50%, #d2c3ab 100%);
-  border-radius:20px; box-shadow:var(--shadow-card);
-  transform:translate(-50%,-50%);
-  transition:transform var(--fly-dur) var(--ease-paper), opacity 900ms ease;
-  will-change:transform,opacity; overflow:hidden; display:flex; flex-direction:column;
+/* Front Pocket (Bottom part of envelope) */
+.pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: #cbb086;
+  border-radius: 0 0 12px 12px;
+  z-index: 12;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  border: 1px solid #bfa36f;
 }
-.card.flying{
-  transform:translate(-50%,-50%) translateY(-130%) rotate(-6deg) scale(1.04);
+.pocket::after {
+  content: ''; position: absolute; top: -40px; left: 0; width: 100%; height: 40px;
+  background: inherit; clip-path: polygon(0 100%, 50% 0, 100% 100%);
 }
-.card.gone{ visibility:hidden; }
 
-/* Card Content Layout - Optimized for Single Screen */
-.card-content{
-  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:6vh 8vw; text-align:center; gap:1.5vh; position:relative; z-index:2;
+/* The Flap (Top part that opens) */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52%;
+  background: #d4c5a8;
+  border-radius: 12px 12px 0 0;
+  z-index: 13;
+  transform-origin: top;
+  transition: transform var(--anim-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bfa36f;
+  border-bottom: none;
+}
+/* Triangle shape for flap bottom */
+.flap::before {
+  content: ''; position: absolute; bottom: -30px; left: 0; width: 100%; height: 30px;
+  background: inherit; clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 
-/* Typography Adjustments for Compact View */
-.t-title{ font-family:'Aref Ruqaa'; font-size:clamp(2rem, 8vw, 2.8rem); line-height:1.4; margin-bottom:1vh; }
-.t-verse{ font-size:clamp(0.95rem, 4vw, 1.15rem); line-height:1.8; color:var(--ink-soft); margin:0.5vh 0; }
-.t-host{ font-size:clamp(1rem, 4.5vw, 1.25rem); line-height:1.6; margin:0.5vh 0; }
-.t-name{ font-family:'Aref Ruqaa'; font-weight:700; font-size:clamp(1.8rem, 7vw, 2.4rem); color:#3e362c; margin:1vh 0 2vh; }
-.t-details{ font-size:clamp(0.9rem, 4vw, 1.1rem); line-height:1.6; color:var(--ink); margin-top:1vh; }
-.t-bless{ font-size:clamp(0.85rem, 3.8vw, 1rem); color:var(--ink-soft); font-style:italic; margin-top:auto; padding-top:2vh; opacity:0.9; }
+/* Seal / Wax Stamp */
+.seal {
+  width: 50px; height: 50px;
+  background: #8a3b3b;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.3);
+  display: grid; place-items: center;
+  color: #d4c5a8;
+  font-family: 'Aref Ruqaa';
+  font-size: 1.5rem;
+  z-index: 14;
+  border: 2px dashed rgba(255,255,255,0.4);
+  transition: transform 0.5s ease;
+}
 
-/* Decorative Elements */
-.flower{ position:absolute; pointer-events:none; width:45%; aspect-ratio:1; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
-.f-tr{ top:-10%; right:-10%; }
-.f-tl{ top:-5%; left:-10%; transform:scaleX(-1); }
-.f-bl{ bottom:-10%; left:-10%; transform:scaleY(-1); }
-.f-br{ bottom:-5%; right:-10%; transform:scale(-1,-1); }
+/* Text on Envelope */
+.env-text {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: 'Aref Ruqaa';
+  font-size: 1.4rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  z-index: 13;
+  letter-spacing: 1px;
+}
 
-/* Buttons inside the card */
-.actions{
-  margin-top:3vh; display:flex; flex-direction:column; gap:12px; width:100%; align-items:center;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+/* ================= ANIMATION STATES ================= */
+/* When Opened */
+.opened .flap {
+  transform: rotateX(180deg);
+  z-index: 5; /* Goes behind card visually or just up */
 }
-.btn{
-  width:80%; max-width:300px; padding:12px 0; border-radius:50px; text-decoration:none;
-  font-family:'Amiri'; font-weight:700; font-size:1.1rem; text-align:center;
-  transition:transform 0.2s; cursor:pointer; border:none;
+.opened .pocket {
+  transform: translateY(100%); /* Pocket moves down to reveal card */
+  transition-delay: 0.2s;
 }
-.btn:active{ transform:scale(0.96); }
-.btn-gold{
-  background:linear-gradient(180deg,#c0a562,#a8894e); color:#fff;
-  box-shadow:0 8px 20px -5px rgba(140,110,55,.4);
+.opened .envelope-wrapper {
+  pointer-events: none;
+  opacity: 0; /* Fade out envelope completely after opening */
+  transition: opacity 0.5s ease 1s;
 }
-.btn-ghost{
-  background:transparent; color:#7a6638; border:1px solid rgba(138,111,60,0.3);
+.opened .invitation-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
-.btn span.en{ display:block; font-size:0.6rem; letter-spacing:0.15em; font-weight:400; opacity:0.8; margin-top:2px; font-family:sans-serif;}
+.opened .seal {
+  transform: scale(0);
+}
 
-/* Music Button */
-.music-btn{
-  position:absolute; top:calc(15px + env(safe-area-inset-top)); right:calc(15px + env(safe-area-inset-right,0));
-  width:40px; height:40px; background:rgba(255,255,255,0.6); border-radius:50%;
-  display:grid; place-items:center; z-index:100; backdrop-filter:blur(4px);
-  border:1px solid rgba(168,137,78,0.3); cursor:pointer;
+/* Initial State of Card (Hidden inside) */
+.invitation-card {
+  transform: translateY(40%) scale(0.95);
+  opacity: 0;
+  z-index: 5;
 }
-.music-btn svg{ width:18px; stroke:#6d5a35; fill:none; stroke-width:1.8; }
-.music-btn.playing svg{ animation:pulse 2s infinite; }
-@keyframes pulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
 
-/* Initial CTA */
-.open-cta{
-  position:absolute; bottom:15%; left:50%; transform:translateX(-50%);
-  z-index:50; text-align:center; transition:opacity 0.6s, transform 0.6s;
+/* Click Hint */
+.hint {
+  position: absolute;
+  bottom: 30px;
+  color: #6b5d4a;
+  font-size: 0.9rem;
+  animation: bounce 2s infinite;
+  z-index: 20;
+  opacity: 0.8;
 }
-.open-cta.hidden{ opacity:0; transform:translate(-50%, 20px); pointer-events:none; }
-.cta-btn{
-  background:var(--ink); color:#fff; padding:14px 36px; border-radius:40px;
-  font-size:1.1rem; font-weight:700; box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-.arrow{
-  width:12px; height:12px; border-left:2px solid var(--ink); border-bottom:2px solid var(--ink);
-  transform:rotate(135deg); margin:10px auto 0; animation:bounce 1.5s infinite;
-}
-@keyframes bounce{ 0%,100%{transform:rotate(135deg) translateY(0)} 50%{transform:rotate(135deg) translateY(-6px)} }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-/* SVG Definitions Hidden */
-.svg-lib{ position:absolute; width:0; height:0; overflow:hidden; }
+/* SVG Styles */
+svg { width: 100%; height: 100%; fill: none; stroke: #fff; stroke-width: 1.5; opacity: 0.6; }
 
 </style>
 </head>
 <body>
 
-<!-- SVG Assets -->
-<svg class="svg-lib">
-  <defs>
-    <linearGradient id="gPetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#efe6d4"/></linearGradient>
-    <radialGradient id="gCenter" cx=".5" cy=".45" r=".62"><stop offset="0" stop-color="#d8c287"/><stop offset="1" stop-color="#8a7434"/></radialGradient>
-    <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c0aa62"/><stop offset="1" stop-color="#8f7a3e"/></linearGradient>
-    
-    <g id="petal"><path d="M100 100 C78 66 78 40 100 14 C122 40 122 66 100 100Z" fill="url(#gPetal)" stroke="#e2d9c4" stroke-width="1"/></g>
-    <g id="flower">
-      <use href="#petal"/><use href="#petal" transform="rotate(45 100 100)"/><use href="#petal" transform="rotate(90 100 100)"/>
-      <use href="#petal" transform="rotate(135 100 100)"/><use href="#petal" transform="rotate(180 100 100)"/><use href="#petal" transform="rotate(225 100 100)"/>
-      <use href="#petal" transform="rotate(270 100 100)"/><use href="#petal" transform="rotate(315 100 100)"/>
-      <circle cx="100" cy="100" r="22" fill="url(#gCenter)"/>
-      <circle cx="100" cy="100" r="8" fill="none" stroke="#6f5c2c" stroke-width="4" stroke-dasharray="1.5 3"/>
-    </g>
-    <g id="leaf"><path d="M0 0 C12 -9 30 -10 44 -2 C30 6 12 7 0 0Z" fill="url(#gLeaf)" stroke="#7c6834" stroke-width=".8"/></g>
-    <g id="branch"><path d="M10 180 Q80 100 180 20" fill="none" stroke="#9c8846" stroke-width="3" stroke-linecap="round"/><use href="#leaf" transform="translate(40 140) rotate(10)"/><use href="#leaf" transform="translate(80 90) rotate(-10)"/><use href="#leaf" transform="translate(120 50) rotate(5)"/></g>
-  </defs>
-</svg>
+<!-- Audio Element -->
+<audio id="weddingAudio" loop>
+  <!-- استبدل الرابط أدناه برابط ملف الموسيقى الخاص بك -->
+  <source src="music/wedding.mp3" type="audio/mpeg">
+</audio>
 
-<div class="grain"></div>
-
-<div class="stage" id="stage">
+<div class="stage">
   
-  <!-- Music Control -->
-  <button class="music-btn" id="musicBtn" aria-label="تشغيل الموسيقى">
-    <svg viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="7" cy="18" r="3"/><circle cx="15" cy="15" r="3"/></svg>
-  </button>
+  <!-- The Invitation Card (Inside) -->
+  <div class="invitation-card">
+    <!-- Decorations -->
+    <svg class="decor d-tl" viewBox="0 0 100 100"><path d="M0 0 L100 0 L0 100 Z" fill="#bfa36f" opacity="0.2"/><circle cx="20" cy="20" r="5" fill="#bfa36f"/></svg>
+    <svg class="decor d-tr" viewBox="0 0 100 100"><path d="M0 0 L100 0 L100 100 Z" fill="#bfa36f" opacity="0.2"/><circle cx="80" cy="20" r="5" fill="#bfa36f"/></svg>
+    <svg class="decor d-bl" viewBox="0 0 100 100"><path d="M0 0 L0 100 L100 100 Z" fill="#bfa36f" opacity="0.2"/><circle cx="20" cy="80" r="5" fill="#bfa36f"/></svg>
+    <svg class="decor d-br" viewBox="0 0 100 100"><path d="M100 0 L100 100 L0 100 Z" fill="#bfa36f" opacity="0.2"/><circle cx="80" cy="80" r="5" fill="#bfa36f"/></svg>
 
-  <!-- Card Stack -->
-  <div class="stack" id="stack">
-    
-    <!-- Card 1: Title -->
-    <div class="card" data-step="1">
-      <div class="flower f-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="flower f-bl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
-      <div class="card-content">
-        <h1 class="t-title">دعوة عقد قرآن</h1>
-        <svg width="100" height="20" viewBox="0 0 100 20"><path d="M10 10 H90" stroke="#a8894e" stroke-width="1"/><circle cx="50" cy="10" r="3" fill="#a8894e"/></svg>
-        <p class="t-verse">وجعلنا بينكم مودة ورحمة</p>
-      </div>
+    <div class="card-header">
+      <h1>دعوة عقد قرآن</h1>
+      <div style="width: 60px; height: 2px; background: var(--gold); margin: 0 auto;"></div>
     </div>
 
-    <!-- Card 2: Verses -->
-    <div class="card" data-step="2">
-      <div class="flower f-tl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
-      <div class="flower f-br"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="card-content">
-        <p class="t-verse">الحمد لله الذي يؤلف قلوب العباد</p>
-        <p class="t-verse">وينعمها بنور الصالحات</p>
-        <p class="t-verse" style="margin-top:1vh; font-style:italic;">بكل معاني الحب والود</p>
-      </div>
-    </div>
-
-    <!-- Card 3: Host & Groom -->
-    <div class="card" data-step="3">
-      <div class="flower f-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="flower f-bl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
-      <div class="card-content">
-        <p class="t-host">يدعوكم السيد / يوسف عمر عطية</p>
-        <p class="t-host">لحضور عقد قرآن ابنه</p>
-        <h2 class="t-name">مجاهد يوسف</h2>
-      </div>
-    </div>
-
-    <!-- Card 4: Date & Location -->
-    <div class="card" data-step="4">
-      <div class="flower f-tl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
-      <div class="flower f-br"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="card-content">
-        <p class="t-details">وذلك يوم الجمعة 18 سبتمبر</p>
-        <p class="t-details" style="font-weight:bold; color:var(--gold);">في مسجد الشهيد</p>
-        <p class="t-details">الخرطوم عقب صلاة الجمعة</p>
-        <p class="t-bless">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
-      </div>
-    </div>
-
-    <!-- Main Card: Full Details + Actions (No Scroll Needed) -->
-    <div class="card" data-step="main" style="z-index:5;">
-      <div class="flower f-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="flower f-tl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
-      <div class="flower f-bl"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></div>
-      <div class="flower f-br"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></div>
+    <div class="card-body">
+      <p class="verse">﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾</p>
       
-      <div class="card-content">
-        <h1 class="t-title" style="font-size:2.2rem;">دعوة عقد قرآن</h1>
-        
-        <div style="height:10px;"></div>
-        
-        <p class="t-verse">وجعلنا بينكم مودة ورحمة</p>
-        <p class="t-verse">الحمد لله الذي يؤلف قلوب العباد وينعمها بنور الصالحات</p>
-        
-        <div style="height:15px;"></div>
-        
-        <p class="t-host">يدعوكم السيد / يوسف عمر عطية</p>
-        <p class="t-host">لحضور عقد قرآن ابنه</p>
-        <h2 class="t-name">مجاهد يوسف</h2>
-        
-        <div style="height:10px;"></div>
-        
-        <p class="t-details">يوم الجمعة 18 سبتمبر</p>
-        <p class="t-details" style="color:var(--gold); font-weight:bold;">مسجد الشهيد - الخرطوم</p>
-        <p class="t-details">عقب صلاة الجمعة</p>
-        
-        <p class="t-bless">بارك الله لهما وجمع بينهما في خير</p>
-
-        <!-- Actions Integrated into the card -->
-        <div class="actions">
-          <a href="https://example.com" class="btn btn-gold">عرض التفاصيل<span class="en">VIEW DETAILS</span></a>
-          <a href="https://example.com/rsvp" class="btn btn-ghost">تأكيد الحضور<span class="en">RSVP</span></a>
-        </div>
-      </div>
+      <p class="host">يتشرف السيد / يوسف عمر عطية</p>
+      <p class="host">بدعوتكم لحضور عقد قرآن ابنه</p>
+      
+      <div class="groom-name">مجاهد يوسف</div>
+      
+      <p class="details">وذلك يوم الجمعة الموافق 18 سبتمبر</p>
+      <p class="details" style="color: var(--gold-dark); font-weight: bold;">في مسجد الشهيد - الخرطوم</p>
+      <p class="details">عقب صلاة الجمعة مباشرة</p>
+      
+      <p class="blessing">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
     </div>
 
+    <div class="card-footer">
+      <div class="actions">
+        <a href="#" class="btn btn-gold">عرض الخريطة والموقع</a>
+        <a href="#" class="btn btn-outline">تأكيد الحضور</a>
+      </div>
+    </div>
   </div>
 
-  <!-- Initial Open Button -->
-  <div class="open-cta" id="openCta">
-    <button class="cta-btn" id="openBtn">افتح الدعوة</button>
-    <div class="arrow"></div>
+  <!-- The Envelope (Outside Cover) -->
+  <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
+    <div class="flap"></div>
+    <div class="env-text">بطاقة دعوة</div>
+    <div class="pocket"></div>
+    <div class="seal">✦</div>
   </div>
 
-  <audio id="audio" loop preload="auto"></audio>
+  <div class="hint" id="hintText">اضغط للفتح</div>
+
 </div>
 
 <script>
-/* CONFIGURATION */
-const CONFIG = {
-  musicFile: "/music/wedding.mp3", // ضع ملف الموسيقى هنا
-  musicVolume: 0.4,
-  viewLink: "https://example.com",
-  rsvpLink: "https://example.com/rsvp"
-};
+  const envelope = document.getElementById('envelope');
+  const audio = document.getElementById('weddingAudio');
+  const hintText = document.getElementById('hintText');
+  let isOpened = false;
 
-// Apply Links
-document.querySelector('.btn-gold').href = CONFIG.viewLink;
-document.querySelector('.btn-ghost').href = CONFIG.rsvpLink;
-document.getElementById('audio').src = CONFIG.musicFile;
+  function openInvitation() {
+    if (isOpened) return;
+    isOpened = true;
 
-/* LOGIC */
-const cards = document.querySelectorAll('.card');
-const openBtn = document.getElementById('openBtn');
-const openCta = document.getElementById('openCta');
-const musicBtn = document.getElementById('musicBtn');
-const audio = document.getElementById('audio');
-let isAnimating = false;
-let musicPlaying = false;
+    // 1. Hide Hint
+    hintText.style.opacity = '0';
 
-// Set initial stack positions
-cards.forEach((card, i) => {
-  if(i < cards.length - 1) {
-    const offset = i * 12; // pixels down
-    const rot = (i % 2 === 0 ? 1 : -1) * 0.8;
-    card.style.transform = `translate(-50%, calc(-50% + ${offset}px)) rotate(${rot}deg)`;
-    card.style.zIndex = 10 - i;
-  }
-});
-
-// Music Control
-musicBtn.addEventListener('click', () => {
-  if(musicPlaying) {
-    audio.pause();
-    musicBtn.classList.remove('playing');
-    musicPlaying = false;
-  } else {
+    // 2. Play Music (Must be triggered by user interaction)
     audio.volume = 0;
     audio.play().then(() => {
+      // Fade in volume
       let vol = 0;
-      const fade = setInterval(() => {
-        if(vol < CONFIG.musicVolume) { vol += 0.05; audio.volume = vol; }
-        else clearInterval(fade);
-      }, 50);
-      musicBtn.classList.add('playing');
-      musicPlaying = true;
-    }).catch(e => console.log("Audio play failed", e));
+      const fadeInterval = setInterval(() => {
+        if (vol < 0.6) {
+          vol += 0.05;
+          audio.volume = vol;
+        } else {
+          clearInterval(fadeInterval);
+        }
+      }, 100);
+    }).catch(error => {
+      console.log("Auto-play prevented:", error);
+      // Fallback if browser blocks audio without explicit permission logic
+      alert("يرجى تفعيل الصوت من المتصفح للاستمتاع بالدعوة");
+    });
+
+    // 3. Animate Envelope Opening
+    envelope.classList.add('opened');
+
+    // Optional: Remove envelope from DOM after animation to prevent clicking
+    setTimeout(() => {
+      envelope.style.pointerEvents = 'none';
+    }, 1000);
   }
-});
-
-// Animation Sequence
-openBtn.addEventListener('click', async () => {
-  if(isAnimating) return;
-  isAnimating = true;
-  
-  // Start Music on first interaction if not playing
-  if(!musicPlaying && CONFIG.musicFile) {
-    audio.volume = 0;
-    try { await audio.play(); musicPlaying = true; musicBtn.classList.add('playing'); 
-         let vol=0; const f=setInterval(()=>{if(vol<CONFIG.musicVolume){vol+=0.05;audio.volume=vol}else clearInterval(f)},50);
-    } catch(e){}
-  }
-
-  openCta.classList.add('hidden');
-
-  // Fly away cards one by one
-  for(let i=0; i<4; i++) {
-    const card = cards[i];
-    card.classList.add('flying');
-    // Wait for animation
-    await new Promise(r => setTimeout(r, 1200)); 
-    card.classList.add('gone');
-  }
-
-  // Reveal Main Card (Reset transform to center)
-  const mainCard = cards[4];
-  mainCard.style.transition = "transform 1s cubic-bezier(0.23, 0.62, 0.24, 1)";
-  mainCard.style.transform = "translate(-50%, -50%) scale(1) rotate(0deg)";
-  mainCard.style.boxShadow = "0 30px 60px -10px rgba(0,0,0,0.4)"; // Enhance shadow for final card
-  
-  isAnimating = false;
-});
-
-// Swipe Up Support
-let touchStartY = 0;
-document.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY, {passive:true});
-document.addEventListener('touchend', e => {
-  const touchEndY = e.changedTouches[0].clientY;
-  if(touchStartY - touchEndY > 50 && !isAnimating && openCta.classList.contains('hidden') === false) {
-    openBtn.click();
-  }
-}, {passive:true});
-
 </script>
+
 </body>
 </html>
