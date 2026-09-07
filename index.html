@@ -1,750 +1,604 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة عقد قرآن</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#d8cab4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>دعوة عقد قرآن — مجاهد يوسف</title>
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #f5f1e8 0%, #ede6d9 50%, #e6dcc8 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+<!-- Typography: calligraphic Arabic (best technical reproduction of the source script) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
+<style>
+/* ==========================================================
+   DESIGN SYSTEM — inherited strictly from REFERENCE 1
+   Paper: warm linen beige | Ink: soft charcoal-brown
+   Gold-olive botanicals | White anemone flowers
+   ========================================================== */
+:root{
+  --paper:#d8cab4;
+  --paper-deep:#cdbc a2;
+  --paper-deep:#cdbca2;
+  --ink:#453c31;
+  --ink-soft:#5a4f42;
+  --ink-faint:#6d6254;
+  --gold:#a8894e;
+  --gold-soft:#b7a25c;
+  --gold-faint:rgba(168,137,78,.38);
+  --cream:#f7f2e7;
+  --petal:#faf7ef;
+  --shadow-card:0 24px 50px -12px rgba(74,60,38,.34),
+                0 6px 16px rgba(74,60,38,.16),
+                inset 0 2px 0 rgba(255,255,255,.55),
+                inset 0 -2px 0 rgba(120,100,70,.14),
+                inset 0 0 90px rgba(120,100,70,.10);
+  --ease-paper:cubic-bezier(.23,.62,.24,1);
+  --fly-dur:1200ms;
+}
 
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, #d4af37, transparent);
-            border-radius: 50%;
-            animation: float 8s infinite ease-in-out;
-            opacity: 0;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Amiri',serif;
+  color:var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% 0%, #e6dcc8 0%, #d8cab4 55%, #c9b899 100%);
+  overflow:hidden;
+  -webkit-user-select:none;user-select:none;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
-        }
+/* ---------- Stage (phone canvas / desktop centered composition) ---------- */
+.stage{
+  position:relative;
+  width:100%;
+  height:100vh;
+  height:100svh;
+  margin:0 auto;
+  overflow:hidden;
+  background:var(--paper);
+  touch-action:none;               /* locked until COMPLETE */
+}
+.stage.locked{touch-action:none}
+.stage:not(.locked){touch-action:pan-y}
 
-        .container {
-            perspective: 2000px;
-            z-index: 10;
-            position: relative;
-        }
+@media (min-width:900px){
+  body{display:grid;place-items:center}
+  .stage{
+    width:min(480px,92vw);
+    height:min(880px,94svh);
+    border-radius:26px;
+    box-shadow:0 50px 110px -20px rgba(60,45,22,.45), 0 18px 40px rgba(60,45,22,.25);
+  }
+}
 
-        .envelope-wrapper {
-            width: 520px;
-            height: 720px;
-            position: relative;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-        }
+/* Linen paper grain (subtle, shared by stage & cards) */
+.grain,.stack-card::after,.main-invite::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.055'/></svg>"),
+    repeating-linear-gradient(0deg, rgba(120,100,70,.022) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(120,100,70,.022) 0 1px, transparent 1px 4px);
+  mix-blend-mode:multiply;
+}
 
-        .envelope-wrapper:hover {
-            transform: rotateY(3deg) rotateX(3deg) scale(1.02);
-        }
+/* ---------- Card stack ---------- */
+.stack{position:absolute;inset:0;perspective:1400px;z-index:2}
+.stack-card{
+  position:absolute;top:50%;left:50%;
+  width:min(88vw,420px);
+  height:min(76svh,720px);
+  background:
+    linear-gradient(160deg, #e0d3bd 0%, var(--paper) 45%, #d2c3ab 100%);
+  border-radius:18px;
+  box-shadow:var(--shadow-card);
+  transform:translate(-50%,-50%);
+  transition:transform var(--fly-dur) var(--ease-paper), opacity 900ms ease;
+  will-change:transform,opacity;
+  overflow:hidden;
+}
+.stack-card.flying{
+  transform:translate(-50%,-50%) translateY(-132%) rotate(-5deg) rotateX(9deg) scale(1.04);
+  transition-duration:var(--fly-dur);
+}
+.stack-card.gone{visibility:hidden}
+.stack-card.fadeout{opacity:0;transform:translate(-50%,-50%) scale(.96)}
 
-        .envelope {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.card-inner{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:9% 10%;gap:2.2vh;
+}
+.card-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.has-photo .card-inner,.has-photo .fl{display:none}
 
-        .envelope.open {
-            transform: rotateY(180deg);
-        }
+/* ---------- Typography (matches source hierarchy) ---------- */
+.t-title{
+  font-family:'Aref Ruqaa',serif;font-weight:700;
+  font-size:clamp(2.1rem,10vw,3.2rem);line-height:1.55;color:#3e362c;
+  text-shadow:0 1px 0 rgba(255,255,255,.45);
+}
+.t-verse{font-size:clamp(1.02rem,4.6vw,1.3rem);line-height:2.15;color:var(--ink-soft)}
+.t-host{font-size:clamp(1.05rem,4.8vw,1.35rem);line-height:2.1;color:var(--ink)}
+.t-name{
+  font-family:'Aref Ruqaa',serif;font-weight:700;
+  font-size:clamp(1.5rem,7vw,2.1rem);color:#4a3f33;line-height:1.8;
+}
+.t-bless{font-size:clamp(1rem,4.4vw,1.2rem);line-height:2.1;color:var(--ink-soft)}
+.orn{width:110px;height:18px;opacity:.85}
 
-        /* خلفية الظرف */
-        .envelope-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #f8f5f0 0%, #f0ebe0 100%);
-            backface-visibility: hidden;
-            border-radius: 10px;
-            box-shadow: 
-                0 25px 70px rgba(0, 0, 0, 0.3),
-                inset 0 0 150px rgba(212, 175, 55, 0.15);
-            overflow: hidden;
-        }
+/* ---------- Botanical artwork (reproduction of REFERENCE 1) ---------- */
+.fl{position:absolute;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(110,90,50,.18))}
+.fl svg{width:100%;height:100%;display:block}
 
-        /* الزخارف الذهبية */
-        .floral-corner {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            opacity: 0.6;
-        }
+/* corner placements on small cards */
+.c-tr{top:-14%;right:-16%;width:52%;aspect-ratio:1}
+.c-tl{top:-6%;left:-10%;width:44%;aspect-ratio:1;transform:scaleX(-1)}
+.c-bl{bottom:-14%;left:-16%;width:52%;aspect-ratio:1;transform:scaleY(-1)}
+.c-br{bottom:-6%;right:-10%;width:44%;aspect-ratio:1;transform:scale(-1,-1)}
 
-        .floral-corner.top-left {
-            top: -20px;
-            left: -20px;
-            transform: rotate(0deg);
-        }
+/* ---------- Main invitation (continuous artwork, scroll-revealed) ---------- */
+.main-invite{
+  position:absolute;inset:0;z-index:3;
+  opacity:0;transform:scale(.94) translateY(28px);
+  transition:opacity 1000ms ease, transform 1100ms var(--ease-paper);
+  pointer-events:none;overflow:hidden;
+  background:linear-gradient(180deg,#ddd0ba 0%, var(--paper) 30%, #d4c5ad 100%);
+}
+.main-invite.active{opacity:1;transform:none;pointer-events:auto;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.paper{position:relative;padding:11svh 9vw 14svh;text-align:center}
+.paper > *{position:relative;z-index:2}
 
-        .floral-corner.top-right {
-            top: -20px;
-            right: -20px;
-            transform: rotate(90deg);
-        }
+.mi-title{margin:0 0 7vh}
+.mi-verse{margin:0 0 3.4vh}
+.mi-gap{height:6vh}
+.mi-host{margin:0 0 2.6vh}
+.mi-name{margin:2vh 0 6vh}
+.mi-date{margin:0 0 2.6vh}
+.mi-bless{margin:8vh auto 0;max-width:88%}
+.mi-actions{
+  margin-top:11vh;display:flex;flex-direction:column;align-items:center;gap:14px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+}
 
-        .floral-corner.bottom-left {
-            bottom: -20px;
-            left: -20px;
-            transform: rotate(-90deg);
-        }
+/* long-page botanical map (mirrors source layout) */
+.m-tr{top:-3%;right:-19%;width:64%;aspect-ratio:1}
+.m-tl{top:0%;left:-13%;width:46%;aspect-ratio:1;transform:scaleX(-1)}
+.m-ml{top:44%;left:-24%;width:58%;aspect-ratio:1}
+.m-ml-l{top:52%;left:-12%;width:44%;aspect-ratio:1;transform:scaleX(-1) rotate(8deg)}
+.m-br{top:63%;right:-20%;width:66%;aspect-ratio:1}
+.m-bc{bottom:-2%;left:22%;width:52%;aspect-ratio:1;transform:rotate(6deg)}
 
-        .floral-corner.bottom-right {
-            bottom: -20px;
-            right: -20px;
-            transform: rotate(180deg);
-        }
+/* ---------- Buttons & UI ---------- */
+.btn{
+  display:inline-block;border-radius:999px;text-decoration:none;cursor:pointer;
+  font-family:'Amiri',serif;font-weight:700;
+  transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+.btn-gold{
+  background:linear-gradient(180deg,#c0a562,#a8894e);
+  color:#fdfaf1;padding:13px 42px;font-size:1.05rem;
+  box-shadow:0 10px 24px -8px rgba(140,110,55,.55), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.btn-ghost{
+  background:transparent;color:#8a6f3c;padding:11px 36px;font-size:.98rem;
+  border:1px solid var(--gold-faint);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn .en{display:block;font-size:.62rem;letter-spacing:.22em;font-weight:400;opacity:.85;margin-top:2px}
 
-        .floral-svg {
-            width: 100%;
-            height: 100%;
-            fill: #d4af37;
-            filter: drop-shadow(2px 2px 4px rgba(212, 175, 55, 0.3));
-        }
+/* OPEN INVITATION — initial CTA */
+.open-wrap{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(26px + env(safe-area-inset-bottom));
+  z-index:6;display:flex;flex-direction:column;align-items:center;gap:10px;
+  transition:opacity .6s ease, transform .6s ease;
+}
+.open-wrap.hidden{opacity:0;transform:translate(-50%,14px);pointer-events:none}
+.open-chevron{width:16px;height:16px;border-left:1.6px solid var(--gold);border-bottom:1.6px solid var(--gold);
+  transform:rotate(135deg);animation:chev 2.4s ease-in-out infinite}
+@keyframes chev{0%,100%{translate:0 0;opacity:.9}50%{translate:0 -6px;opacity:.5}}
 
-        /* واجهة الظرف مع الباب */
-        .envelope-front {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #f8f5f0 0%, #f0ebe0 100%);
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            border-radius: 10px;
-            box-shadow: 
-                0 25px 70px rgba(0, 0, 0, 0.3),
-                inset 0 0 150px rgba(212, 175, 55, 0.15);
-            overflow: hidden;
-        }
+/* Music control — top-right, safe-area aware */
+.music-btn{
+  position:absolute;
+  top:calc(14px + env(safe-area-inset-top));
+  right:calc(14px + env(safe-area-inset-right,0px));
+  z-index:9;width:44px;height:44px;border-radius:50%;
+  background:rgba(250,247,239,.72);
+  border:1px solid var(--gold-faint);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:grid;place-items:center;cursor:pointer;
+  transition:transform .3s ease;
+}
+.music-btn:hover{transform:scale(1.06)}
+.music-btn svg{width:19px;height:19px;stroke:#8a6f3c;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.music-btn.playing{animation:ring 2.6s ease-in-out infinite}
+@keyframes ring{
+  0%,100%{box-shadow:0 0 0 0 rgba(168,137,78,.28)}
+  50%{box-shadow:0 0 0 9px rgba(168,137,78,0)}
+}
+.music-btn .ico-on{display:none}
+.music-btn.playing .ico-on{display:block}
+.music-btn.playing .ico-off{display:none}
 
-        /* إطار الباب */
-        .door-frame {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 420px;
-            perspective: 1000px;
-        }
+/* Scroll hint after COMPLETE */
+.scroll-hint{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  z-index:6;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--ink-faint);font-size:.82rem;letter-spacing:.04em;
+  opacity:0;transition:opacity .7s ease;pointer-events:none;
+}
+.scroll-hint.visible{opacity:.9}
+.scroll-hint .open-chevron{transform:rotate(-45deg)}
 
-        /* الباب */
-        .door {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .envelope.open .door {
-            transform: rotateY(-105deg);
-        }
-
-        .door-left, .door-right {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(145deg, #fffefc 0%, #faf8f5 100%);
-            border: 4px solid #d4af37;
-            box-shadow: 
-                inset 0 0 40px rgba(212, 175, 55, 0.4),
-                0 8px 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .door-left {
-            left: 0;
-            border-radius: 150px 0 0 0;
-            transform-origin: left;
-            z-index: 2;
-        }
-
-        .door-right {
-            right: 0;
-            border-radius: 0 150px 0 0;
-            transform-origin: right;
-            z-index: 2;
-        }
-
-        /* زخرفة الباب */
-        .door-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.4;
-        }
-
-        .door-pattern svg {
-            width: 100%;
-            height: 100%;
-            fill: #d4af37;
-        }
-
-        /* مقبض الباب */
-        .door-handle {
-            position: absolute;
-            top: 50%;
-            width: 25px;
-            height: 45px;
-            background: linear-gradient(180deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
-            border-radius: 12px;
-            box-shadow: 
-                0 3px 12px rgba(0, 0, 0, 0.4),
-                inset 0 2px 5px rgba(255, 255, 255, 0.3);
-        }
-
-        .door-left .door-handle {
-            right: 18px;
-        }
-
-        .door-right .door-handle {
-            left: 18px;
-        }
-
-        /* الإضاءة الداخلية */
-        .inner-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 280px;
-            height: 400px;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 215, 0, 0.9) 0%, 
-                rgba(255, 200, 0, 0.5) 35%, 
-                rgba(255, 180, 0, 0.2) 60%, 
-                transparent 80%);
-            opacity: 0;
-            transition: opacity 1.8s ease;
-            z-index: 1;
-            filter: blur(20px);
-        }
-
-        .envelope.open .inner-glow {
-            opacity: 1;
-            animation: glowPulse 4s infinite ease-in-out;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { 
-                opacity: 0.85; 
-                transform: translate(-50%, -50%) scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: translate(-50%, -50%) scale(1.08); 
-            }
-        }
-
-        /* بطاقة الدعوة */
-        .invitation-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.75) translateY(30px);
-            width: 260px;
-            min-height: 380px;
-            background: linear-gradient(145deg, #fffefc 0%, #faf8f5 100%);
-            border: 3px solid #d4af37;
-            border-radius: 8px;
-            padding: 35px 25px;
-            text-align: center;
-            opacity: 0;
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 3;
-            box-shadow: 
-                0 15px 50px rgba(212, 175, 55, 0.4),
-                inset 0 0 80px rgba(212, 175, 55, 0.1);
-        }
-
-        .envelope.open .invitation-card {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1) translateY(0);
-            animation: cardEntrance 1.2s ease 0.8s both;
-        }
-
-        @keyframes cardEntrance {
-            0% { 
-                transform: translate(-50%, 60px) scale(0.75); 
-                opacity: 0; 
-            }
-            100% { 
-                transform: translate(-50%, -50%) scale(1); 
-                opacity: 1; 
-            }
-        }
-
-        /* إطار البطاقة الداخلي */
-        .card-border {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border: 2px solid #d4af37;
-            border-radius: 4px;
-            pointer-events: none;
-        }
-
-        /* زوايا البطاقة المزخرفة */
-        .card-corner {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            opacity: 0.7;
-        }
-
-        .card-corner.top-left { top: 8px; left: 8px; }
-        .card-corner.top-right { top: 8px; right: 8px; transform: rotate(90deg); }
-        .card-corner.bottom-left { bottom: 8px; left: 8px; transform: rotate(-90deg); }
-        .card-corner.bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
-
-        .card-corner svg {
-            width: 100%;
-            height: 100%;
-            fill: #d4af37;
-        }
-
-        /* محتوى البطاقة */
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .card-content h1 {
-            font-family: 'Amiri', serif;
-            font-size: 2.8em;
-            color: #8b4513;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 6px rgba(139, 69, 19, 0.2);
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        .card-content .verse {
-            font-family: 'Amiri', serif;
-            font-size: 1.15em;
-            color: #5a4a42;
-            margin: 12px 0;
-            line-height: 2;
-            font-style: italic;
-        }
-
-        .card-content .names {
-            font-family: 'Amiri', serif;
-            font-size: 1.4em;
-            color: #8b4513;
-            font-weight: bold;
-            margin: 25px 0;
-            line-height: 1.8;
-        }
-
-        .card-content .date-location {
-            font-family: 'Amiri', serif;
-            font-size: 1.1em;
-            color: #5a4a42;
-            margin: 18px 0;
-            padding: 15px;
-            background: rgba(212, 175, 55, 0.08);
-            border-radius: 6px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            line-height: 1.9;
-        }
-
-        .card-content .blessing {
-            font-family: 'Amiri', serif;
-            font-size: 1.05em;
-            color: #5a4a42;
-            margin-top: 20px;
-            font-style: italic;
-        }
-
-        /* تعليمات الفتح */
-        .instruction {
-            position: absolute;
-            bottom: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #8b4513;
-            font-size: 1.15em;
-            text-align: center;
-            animation: bounce 2.5s infinite;
-            white-space: nowrap;
-            font-weight: 600;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-12px); }
-        }
-
-        /* زر الموسيقى */
-        .music-control {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            z-index: 100;
-            background: linear-gradient(145deg, #d4af37 0%, #ffd700 100%);
-            border: 3px solid #fff;
-            border-radius: 50%;
-            width: 65px;
-            height: 65px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
-        }
-
-        .music-control:hover {
-            transform: scale(1.12);
-            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
-        }
-
-        .music-control.playing {
-            animation: pulse 2.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5); 
-            }
-            50% { 
-                box-shadow: 0 6px 40px rgba(212, 175, 55, 0.9); 
-            }
-        }
-
-        .music-icon {
-            color: #fff;
-            font-size: 26px;
-        }
-
-        /* زر المشاركة */
-        .share-button {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 100;
-            background: linear-gradient(145deg, #d4af37 0%, #ffd700 100%);
-            color: #fff;
-            border: 3px solid #fff;
-            padding: 14px 30px;
-            border-radius: 30px;
-            font-size: 1.05em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
-        }
-
-        .share-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
-        }
-
-        /* تجاوب مع الشاشات الصغيرة */
-        @media (max-width: 600px) {
-            .envelope-wrapper {
-                width: 360px;
-                height: 520px;
-            }
-            
-            .door-frame {
-                width: 220px;
-                height: 320px;
-            }
-            
-            .invitation-card {
-                width: 200px;
-                min-height: 300px;
-                padding: 25px 18px;
-            }
-            
-            .card-content h1 {
-                font-size: 2em;
-            }
-            
-            .card-content .verse,
-            .card-content p {
-                font-size: 0.95em;
-            }
-            
-            .floral-corner {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  :root{--fly-dur:450ms}
+  .open-chevron,.music-btn.playing{animation:none}
+  .stack-card{transition-duration:450ms}
+  .stack-card.flying{transform:translate(-50%,-50%) translateY(-115%);opacity:0}
+  .main-invite{transition-duration:400ms}
+}
+</style>
 </head>
 <body>
-    <!-- الجزيئات العائمة -->
-    <div class="particles" id="particles"></div>
-    
-    <!-- زر المشاركة -->
-    <button class="share-button" onclick="shareInvitation()">
-         مشاركة الدعوة
+
+<!-- ============ BOTANICAL SVG LIBRARY (white anemone + gold foliage) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gPetal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#efe6d4"/>
+    </linearGradient>
+    <radialGradient id="gCenter" cx=".5" cy=".45" r=".62">
+      <stop offset="0" stop-color="#d8c287"/><stop offset=".6" stop-color="#b49a55"/><stop offset="1" stop-color="#8a7434"/>
+    </radialGradient>
+    <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c0aa62"/><stop offset="1" stop-color="#8f7a3e"/>
+    </linearGradient>
+
+    <g id="petal">
+      <path d="M100 100 C78 66 78 40 100 14 C122 40 122 66 100 100Z" fill="url(#gPetal)" stroke="#e2d9c4" stroke-width="1"/>
+      <path d="M100 92 C90 68 90 48 100 28" fill="none" stroke="#e6ddc8" stroke-width="1" opacity=".8"/>
+      <path d="M100 92 C108 70 108 52 100 34" fill="none" stroke="#ece4d2" stroke-width=".8" opacity=".7"/>
+    </g>
+
+    <g id="flower">
+      <use href="#petal"/>
+      <use href="#petal" transform="rotate(45 100 100)"/>
+      <use href="#petal" transform="rotate(90 100 100)"/>
+      <use href="#petal" transform="rotate(135 100 100)"/>
+      <use href="#petal" transform="rotate(180 100 100)"/>
+      <use href="#petal" transform="rotate(225 100 100)"/>
+      <use href="#petal" transform="rotate(270 100 100)"/>
+      <use href="#petal" transform="rotate(315 100 100)"/>
+      <use href="#petal" transform="rotate(22.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(67.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(112.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(157.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(202.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(247.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(292.5 100 100) translate(38 38) scale(.62)"/>
+      <use href="#petal" transform="rotate(337.5 100 100) translate(38 38) scale(.62)"/>
+      <circle cx="100" cy="100" r="26" fill="url(#gCenter)"/>
+      <circle cx="100" cy="100" r="8"  fill="none" stroke="#6f5c2c" stroke-width="5"   stroke-dasharray="1.5 3.4" opacity=".85"/>
+      <circle cx="100" cy="100" r="15" fill="none" stroke="#e3cf8f" stroke-width="5.5" stroke-dasharray="2 4.2"  opacity=".9"/>
+      <circle cx="100" cy="100" r="22" fill="none" stroke="#8a7434" stroke-width="5"   stroke-dasharray="2.2 4.6" opacity=".8"/>
+    </g>
+
+    <g id="leaflet">
+      <path d="M0 0 C12 -9 30 -10 44 -2 C30 6 12 7 0 0Z" fill="url(#gLeaf)" stroke="#7c6834" stroke-width=".8"/>
+      <path d="M3 -.5 L41 -1.5" stroke="#77632f" stroke-width=".8" fill="none"/>
+      <path d="M10 -1 L14 -5 M18 -1.4 L22 -6 M26 -1.8 L30 -6 M12 0 L16 3.4 M20 -.4 L24 3 M28 -.8 L32 2.6"
+            stroke="#77632f" stroke-width=".5" fill="none" opacity=".8"/>
+    </g>
+
+    <g id="branch">
+      <path d="M8 190 C50 150 110 90 178 18" fill="none" stroke="#9c8846" stroke-width="3.2" stroke-linecap="round"/>
+      <use href="#leaflet" transform="translate(26 172) rotate(8)"/>
+      <use href="#leaflet" transform="translate(30 168) rotate(-102) scale(.92)"/>
+      <use href="#leaflet" transform="translate(52 146) rotate(6) scale(.96)"/>
+      <use href="#leaflet" transform="translate(56 142) rotate(-104) scale(.88)"/>
+      <use href="#leaflet" transform="translate(78 120) rotate(4) scale(.92)"/>
+      <use href="#leaflet" transform="translate(82 116) rotate(-106) scale(.84)"/>
+      <use href="#leaflet" transform="translate(104 94) rotate(2) scale(.88)"/>
+      <use href="#leaflet" transform="translate(108 90) rotate(-108) scale(.8)"/>
+      <use href="#leaflet" transform="translate(130 68) rotate(0) scale(.82)"/>
+      <use href="#leaflet" transform="translate(134 64) rotate(-110) scale(.74)"/>
+      <use href="#leaflet" transform="translate(156 42) rotate(-2) scale(.74)"/>
+      <use href="#leaflet" transform="translate(176 22) rotate(-45) scale(.7)"/>
+    </g>
+
+    <g id="corner">
+      <use href="#flower" transform="translate(60 -10) scale(.85)"/>
+      <use href="#branch" transform="translate(-30 60) scale(.8)"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ============ STAGE ============ -->
+<div class="stage locked" id="stage">
+  <div class="grain"></div>
+
+  <!-- Card stack: CARD_01 → CARD_04 → base -->
+  <div class="stack" id="stack" aria-label="بطاقات الدعوة">
+
+    <section class="stack-card" data-card="0" aria-label="البطاقة الأولى">
+      <span class="fl c-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl c-tl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <span class="fl c-bl"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl c-br"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <div class="card-inner">
+        <h1 class="t-title" data-cfg="title">دعوة عقد قرآن</h1>
+        <svg class="orn" viewBox="0 0 120 20"><path d="M4 10 H46 M74 10 H116" stroke="#a8894e" stroke-width="1"/><path d="M60 3 L67 10 L60 17 L53 10 Z" fill="none" stroke="#a8894e" stroke-width="1"/></svg>
+        <p class="t-verse" data-cfg="verse1">وجعلنا بينكم مودة ورحمة</p>
+      </div>
+    </section>
+
+    <section class="stack-card" data-card="1" aria-label="البطاقة الثانية">
+      <span class="fl c-tr"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <span class="fl c-bl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <div class="card-inner">
+        <p class="t-verse" data-cfg="verse2">الحمد لله الذي يؤلف قلوب العباد وينعمها بنور الصالحات</p>
+        <p class="t-verse" data-cfg="verse3">بكل معاني الحب والود</p>
+      </div>
+    </section>
+
+    <section class="stack-card" data-card="2" aria-label="البطاقة الثالثة">
+      <span class="fl c-tl"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl c-br"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <div class="card-inner">
+        <p class="t-host" data-cfg="hostLine">يدعوكم السيد / يوسف عمر عطية</p>
+        <p class="t-host" data-cfg="eventLine">لحضور عقد قرآن ابنه</p>
+        <h2 class="t-name" data-cfg="groomName">مجاهد يوسف</h2>
+      </div>
+    </section>
+
+    <section class="stack-card" data-card="3" aria-label="البطاقة الرابعة">
+      <span class="fl c-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl c-bl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <div class="card-inner">
+        <p class="t-host" data-cfg="dateLine">وذلك يوم الجمعة 18 سبتمبر في مسجد الشهيد</p>
+        <p class="t-host" data-cfg="timeLine">الخرطوم عقب صلاة الجمعة</p>
+      </div>
+    </section>
+
+    <section class="stack-card" data-card="4" aria-label="ظرف الدعوة">
+      <span class="fl c-tr"><svg viewBox="0 0 200 200"><use href="#corner"/></svg></span>
+      <span class="fl c-bl"><svg viewBox="0 0 200 200"><use href="#corner"/></svg></span>
+    </section>
+  </div>
+
+  <!-- MAIN INVITATION: continuous artwork, progressively scroll-revealed -->
+  <main class="main-invite" id="mainInvite" aria-label="بطاقة الدعوة الرئيسية">
+    <div class="paper">
+      <span class="fl m-tr"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl m-tl"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <span class="fl m-ml"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl m-ml-l"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+      <span class="fl m-br"><svg viewBox="0 0 200 200"><use href="#flower"/></svg></span>
+      <span class="fl m-bc"><svg viewBox="0 0 200 200"><use href="#branch"/></svg></span>
+
+      <header class="mi-title"><h1 class="t-title" data-cfg="title">دعوة عقد قرآن</h1></header>
+
+      <p class="t-verse mi-verse" data-cfg="verse1">وجعلنا بينكم مودة ورحمة</p>
+      <p class="t-verse mi-verse" data-cfg="verse2">الحمد لله الذي يؤلف قلوب العباد وينعمها بنور الصالحات</p>
+      <p class="t-verse mi-verse" data-cfg="verse3">بكل معاني الحب والود</p>
+
+      <div class="mi-gap"></div>
+
+      <p class="t-host mi-host" data-cfg="hostLine">يدعوكم السيد / يوسف عمر عطية</p>
+      <p class="t-host mi-host" data-cfg="eventLine">لحضور عقد قرآن ابنه</p>
+      <h2 class="t-name mi-name" data-cfg="groomName">مجاهد يوسف</h2>
+
+      <p class="t-host mi-date" data-cfg="dateLine">وذلك يوم الجمعة 18 سبتمبر في مسجد الشهيد</p>
+      <p class="t-host mi-date" data-cfg="timeLine">الخرطوم عقب صلاة الجمعة</p>
+
+      <p class="t-bless mi-bless" data-cfg="blessing">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
+
+      <div class="mi-actions">
+        <a class="btn btn-gold" id="viewBtn" href="#" aria-label="عرض تفاصيل الدعوة">
+          عرض الدعوة<span class="en">VIEW INVITATION</span>
+        </a>
+        <a class="btn btn-ghost" id="rsvpBtn" href="#" aria-label="تأكيد الحضور">
+          تأكيد الحضور<span class="en">RSVP</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- UI -->
+  <button class="music-btn" id="musicBtn" aria-label="تشغيل أو إيقاف الموسيقى" aria-pressed="false">
+    <svg class="ico-off" viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="7" cy="18" r="2.4"/><circle cx="15" cy="15" r="2.4"/><path d="M3 3l18 18"/></svg>
+    <svg class="ico-on"  viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="7" cy="18" r="2.4"/><circle cx="15" cy="15" r="2.4"/></svg>
+  </button>
+
+  <div class="open-wrap" id="openWrap">
+    <button class="btn btn-gold" id="openBtn" aria-label="فتح دعوة الزفاف">
+      فتح الدعوة<span class="en">OPEN INVITATION</span>
     </button>
-    
-    <!-- زر الموسيقى -->
-    <div class="music-control" id="musicControl" onclick="toggleMusic()">
-        <span class="music-icon">🎵</span>
-    </div>
-    
-    <!-- مشغل الموسيقى -->
-    <audio id="backgroundMusic" loop>
-        <source src="your-music-file.mp3" type="audio/mpeg">
-    </audio>
+    <span class="open-chevron" aria-hidden="true"></span>
+  </div>
 
-    <div class="container">
-        <div class="envelope-wrapper" onclick="openEnvelope()">
-            <div class="envelope" id="envelope">
-                <!-- ظهر الظرف -->
-                <div class="envelope-back">
-                    <div class="floral-corner top-left">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner top-right">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner bottom-left">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner bottom-right">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <!-- واجهة الظرف مع الباب -->
-                <div class="envelope-front">
-                    <div class="floral-corner top-left">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner top-right">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner bottom-left">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    <div class="floral-corner bottom-right">
-                        <svg class="floral-svg" viewBox="0 0 100 100">
-                            <path d="M50 0 C30 20 20 40 0 50 C20 60 30 80 50 100 C70 80 80 60 100 50 C80 40 70 20 50 0 Z M50 20 C40 30 35 40 30 50 C35 60 40 70 50 80 C60 70 65 60 70 50 C65 40 60 30 50 20 Z"/>
-                        </svg>
-                    </div>
-                    
-                    <div class="door-frame">
-                        <div class="inner-glow"></div>
-                        
-                        <div class="door">
-                            <div class="door-left">
-                                <div class="door-pattern">
-                                    <svg viewBox="0 0 100 200">
-                                        <path d="M50 10 Q30 40 20 70 Q30 100 50 130 Q70 100 80 70 Q70 40 50 10 Z M50 30 Q40 50 35 70 Q40 90 50 110 Q60 90 65 70 Q60 50 50 30 Z"/>
-                                    </svg>
-                                </div>
-                                <div class="door-handle"></div>
-                            </div>
-                            <div class="door-right">
-                                <div class="door-pattern">
-                                    <svg viewBox="0 0 100 200">
-                                        <path d="M50 10 Q30 40 20 70 Q30 100 50 130 Q70 100 80 70 Q70 40 50 10 Z M50 30 Q40 50 35 70 Q40 90 50 110 Q60 90 65 70 Q60 50 50 30 Z"/>
-                                    </svg>
-                                </div>
-                                <div class="door-handle"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="invitation-card">
-                            <div class="card-border"></div>
-                            
-                            <div class="card-corner top-left">
-                                <svg viewBox="0 0 50 50">
-                                    <path d="M0 0 L20 0 Q10 10 0 20 Z"/>
-                                </svg>
-                            </div>
-                            <div class="card-corner top-right">
-                                <svg viewBox="0 0 50 50">
-                                    <path d="M50 0 L30 0 Q40 10 50 20 Z"/>
-                                </svg>
-                            </div>
-                            <div class="card-corner bottom-left">
-                                <svg viewBox="0 0 50 50">
-                                    <path d="M0 50 L20 50 Q10 40 0 30 Z"/>
-                                </svg>
-                            </div>
-                            <div class="card-corner bottom-right">
-                                <svg viewBox="0 0 50 50">
-                                    <path d="M50 50 L30 50 Q40 40 50 30 Z"/>
-                                </svg>
-                            </div>
-                            
-                            <div class="card-content">
-                                <h1>دعوة عقد قرآن</h1>
-                                
-                                <p class="verse">وجعلنا بينكم مودة ورحمة</p>
-                                
-                                <p class="verse">الحمد لله الذي يسكن قلوب العباد وينعمها بنور الصالحات</p>
-                                
-                                <p class="verse">بكل معاني الحب والود</p>
-                                
-                                <p class="names">
-                                    يدعوكم السيد / يوسف عم عطية<br>
-                                    لحضور عقد قرآن إبنه<br>
-                                    مجاهد يوسف
-                                </p>
-                                
-                                <div class="date-location">
-                                    وذلك يوم الجمعة، 18 سبتمبر<br>
-                                    في مسجد الشهيد<br>
-                                    الخرطوم عقب صلاة الجمعة
-                                </div>
-                                
-                                <p class="blessing">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="instruction">✨ اضغط على الظرف لفتح الدعوة ✨</div>
-        </div>
-    </div>
+  <div class="scroll-hint" id="scrollHint" aria-hidden="true">
+    <span>اسحب للأعلى</span>
+    <span class="open-chevron"></span>
+  </div>
 
-    <script>
-        // إنشاء الجزيئات العائمة
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 60; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 5) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+  <audio id="weddingMusic" loop preload="auto"></audio>
+</div>
 
-        // فتح الظرف
-        function openEnvelope() {
-            const envelope = document.getElementById('envelope');
-            if (!envelope.classList.contains('open')) {
-                envelope.classList.add('open');
-                
-                // تشغيل الموسيقى تلقائياً عند الفتح
-                const music = document.getElementById('backgroundMusic');
-                const musicControl = document.getElementById('musicControl');
-                
-                if (music.paused) {
-                    music.play().then(() => {
-                        musicControl.classList.add('playing');
-                    }).catch(error => {
-                        console.log('Autoplay prevented:', error);
-                    });
-                }
-            }
-        }
+<script>
+/* ==========================================================
+   CONFIGURATION — edit freely; animation adapts automatically
+   ========================================================== */
+const INVITATION_CONFIG = {
+  title:        "دعوة عقد قرآن",
+  verse1:       "وجعلنا بينكم مودة ورحمة",
+  verse2:       "الحمد لله الذي يؤلف قلوب العباد وينعمها بنور الصالحات",
+  verse3:       "بكل معاني الحب والود",
+  hostLine:     "يدعوكم السيد / يوسف عمر عطية",
+  eventLine:    "لحضور عقد قرآن ابنه",
+  groomName:    "مجاهد يوسف",
+  brideName:    "",
+  weddingDate:  "الجمعة 18 سبتمبر",
+  venue:        "مسجد الشهيد",
+  address:      "الخرطوم عقب صلاة الجمعة",
+  dateLine:     "وذلك يوم الجمعة 18 سبتمبر في مسجد الشهيد",
+  timeLine:     "الخرطوم عقب صلاة الجمعة",
+  blessing:     "بارك الله لهما وبارك عليهما وجمع بينهما في خير",
+  invitationLink: "https://example.com",          /* VIEW INVITATION destination */
+  rsvpLink:       "https://example.com/rsvp",     /* RSVP destination */
+  /* Optional: drop real scanned artwork here to replace the CSS reproduction */
+  cardImages: { card01:"", card02:"", card03:"", card04:"", main:"" }
+};
 
-        // التحكم في الموسيقى
-        function toggleMusic() {
-            const music = document.getElementById('backgroundMusic');
-            const musicControl = document.getElementById('musicControl');
-            
-            if (music.paused) {
-                music.play();
-                musicControl.classList.add('playing');
-            } else {
-                music.pause();
-                musicControl.classList.remove('playing');
-            }
-        }
+const MUSIC_CONFIG = {
+  enabled: true,
+  autoplayAfterUserInteraction: true,
+  volume: 0.35,
+  loop: true,
+  musicFile: "/music/wedding.mp3"   /* replace with any licensed audio file */
+};
 
-        // مشاركة الدعوة
-        function shareInvitation() {
-            const shareData = {
-                title: 'دعوة عقد قرآن',
-                text: 'تشريفكم يسعدنا في حفل عقد القران',
-                url: window.location.href
-            };
+/* ==========================================================
+   STATE MACHINE
+   ========================================================== */
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FLY   = REDUCED ? 450  : 1200;
+const GAP   = REDUCED ? 80   : 150;
+const REVEAL= REDUCED ? 450  : 1100;
 
-            if (navigator.share) {
-                navigator.share(shareData).catch(console.error);
-            } else {
-                const tempInput = document.createElement('input');
-                tempInput.value = window.location.href;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                alert('✅ تم نسخ رابط الدعوة! يمكنك مشاركته الآن.');
-            }
-        }
+let state = 'INTRO';          /* INTRO | CARD_1..4 | MAIN_INVITATION | COMPLETE */
+let isAnimating = false;
 
-        // التهيئة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            // اختصار لوحة المفاتيح
-            document.addEventListener('keydown', function(e) {
-                if (e.code === 'Space' || e.code === 'Enter') {
-                    openEnvelope();
-                }
-            });
-        });
+const stage      = document.getElementById('stage');
+const cards      = [...document.querySelectorAll('.stack-card')];
+const mainInvite = document.getElementById('mainInvite');
+const openWrap   = document.getElementById('openWrap');
+const openBtn    = document.getElementById('openBtn');
+const scrollHint = document.getElementById('scrollHint');
+const musicBtn   = document.getElementById('musicBtn');
+const audio      = document.getElementById('weddingMusic');
 
-        // منع التمرير الافتراضي على الأجهزة المحمولة
-        document.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-        }, { passive: false });
-    </script>
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const setState = s => { state = s; };
+
+/* ---------- Apply configuration ---------- */
+(function applyConfig(){
+  document.querySelectorAll('[data-cfg]').forEach(el => {
+    const v = INVITATION_CONFIG[el.dataset.cfg];
+    if (v) el.textContent = v;
+  });
+  document.getElementById('viewBtn').href = INVITATION_CONFIG.invitationLink;
+  document.getElementById('rsvpBtn').href = INVITATION_CONFIG.rsvpLink;
+  const map = {card01:0, card02:1, card03:2, card04:3, main:4};
+  for (const [key, idx] of Object.entries(map)) {
+    const src = INVITATION_CONFIG.cardImages[key];
+    if (src) {
+      const host = idx === 4 ? mainInvite : cards[idx];
+      host.classList.add('has-photo');
+      const img = new Image();
+      img.src = src; img.alt = ""; img.className = "card-photo";
+      host.prepend(img);
+    }
+  }
+  if (MUSIC_CONFIG.enabled) { audio.src = MUSIC_CONFIG.musicFile; audio.loop = MUSIC_CONFIG.loop; }
+  else musicBtn.style.display = 'none';
+})();
+
+/* ---------- Stack geometry ---------- */
+function setOffsets(top){
+  cards.forEach((el, i) => {
+    if (i < top || el.classList.contains('flying')) return;
+    const d = i - top;
+    const rot = (d % 2 ? -1 : 1) * 0.9;
+    el.style.transform =
+      `translate(-50%,-50%) translateY(${d * 14}px) scale(${1 - d * 0.028}) rotate(${rot}deg)`;
+    el.style.zIndex = 10 - i;
+  });
+}
+setOffsets(0);
+
+/* ---------- Music controller (fade in / fade out, no autoplay) ---------- */
+let musicOn = false;
+function fadeVolume(to, dur){
+  return new Promise(res => {
+    const from = audio.volume, t0 = performance.now();
+    (function step(t){
+      const k = Math.min(1, (t - t0) / dur);
+      audio.volume = from + (to - from) * k;
+      k < 1 ? requestAnimationFrame(step) : res();
+    })(t0);
+  });
+}
+async function musicPlay(fade = 500){
+  try {
+    audio.volume = 0;
+    await audio.play();
+    musicOn = true;
+    musicBtn.classList.add('playing');
+    musicBtn.setAttribute('aria-pressed','true');
+    await fadeVolume(MUSIC_CONFIG.volume, fade);
+  } catch(e){ /* browser refused: user may press the button manually */ }
+}
+async function musicPause(){
+  await fadeVolume(0, 500);
+  audio.pause();
+  musicOn = false;
+  musicBtn.classList.remove('playing');
+  musicBtn.setAttribute('aria-pressed','false');
+}
+musicBtn.addEventListener('click', () => musicOn ? musicPause() : musicPlay(500));
+
+/* ---------- Opening sequence ---------- */
+async function startExperience(){
+  if (state !== 'INTRO' || isAnimating) return;
+  isAnimating = true;
+  openWrap.classList.add('hidden');
+
+  if (MUSIC_CONFIG.enabled && MUSIC_CONFIG.autoplayAfterUserInteraction) musicPlay(1800);
+
+  for (let k = 0; k < 4; k++){
+    setState('CARD_' + (k + 1));
+    const el = cards[k];
+    el.classList.add('flying');
+    setOffsets(k + 1);
+    await sleep(FLY + GAP);
+    el.classList.add('gone');
+  }
+
+  setState('MAIN_INVITATION');
+  cards[4].classList.add('fadeout');
+  mainInvite.classList.add('active');
+  await sleep(REVEAL);
+  cards[4].classList.add('gone');
+
+  setState('COMPLETE');
+  stage.classList.remove('locked');
+  scrollHint.classList.add('visible');
+  setTimeout(() => scrollHint.classList.remove('visible'), 2800);
+  isAnimating = false;
+}
+
+openBtn.addEventListener('click', startExperience);
+
+/* ---------- Touch / wheel interaction ---------- */
+let y0 = null;
+stage.addEventListener('pointerdown', e => { y0 = e.clientY; }, {passive:true});
+stage.addEventListener('pointerup', e => {
+  if (y0 === null) return;
+  const dy = e.clientY - y0; y0 = null;
+  if (state === 'INTRO' && dy < -40) startExperience();   /* swipe up opens */
+}, {passive:true});
+stage.addEventListener('wheel', e => {
+  if (state === 'INTRO' && e.deltaY > 10) startExperience();
+}, {passive:true});
+</script>
 </body>
 </html>
